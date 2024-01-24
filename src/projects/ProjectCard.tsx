@@ -1,20 +1,31 @@
 import {Project} from './Project';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 function formatDescription(description: string): string {
-    return description.substring(0, 60) + '...';
+    return description.length > 60
+        ?
+        description.substring(0, 60) + '...'
+        :
+        description
 }
-interface ProjectCardProps {
-    project: Project
-}
-function ProjectCard(props: ProjectCardProps) {
-    const {project} = props;
-    const [clicksNumber, setNumber] = useState(0);
 
-    const handleEditClick = (projectBeingEdited: Project) => {
+interface ProjectCardProps {
+    project: Project,
+    onEdit: (project: Project) => void;
+}
+
+function ProjectCard(props: ProjectCardProps) {
+    const {project, onEdit} = props;
+    const [clicksNumber, setClicksNumber] = useState(0);
+
+    const incrementClickNumber = (projectBeingEdited: Project) => {
         let newValue = clicksNumber + 1
-        setNumber(newValue);
+        setClicksNumber(newValue);
         console.log("project with id: [" + projectBeingEdited.id + "] has been clicked [" + newValue + "] times");
+    }
+    const handleEditClick = (projectBeingEdited: Project) => {
+        incrementClickNumber(projectBeingEdited)
+        onEdit(projectBeingEdited)
     };
 
 
