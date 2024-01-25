@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import ProjectsPage from "./projects/ProjectsPage";
+import Router from "./router/Router";
 
 function App() {
     return (
-    <div>
-        <ProjectsPage/>
-    </div>
-)
-
+        <Router/>
+    )
 }
 
 export default App;
