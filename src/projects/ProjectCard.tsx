@@ -1,5 +1,5 @@
 import {Project} from './Project';
-import React, {useState} from 'react';
+import {Link} from "react-router-dom";
 
 function formatDescription(description: string): string {
     return description.length > 60
@@ -16,22 +16,16 @@ interface ProjectCardProps {
 
 function ProjectCard(props: ProjectCardProps) {
     const {project, onEdit} = props;
-    const [clicksNumber, setClicksNumber] = useState(0);
-
-    const incrementClickNumber = (projectBeingEdited: Project) => {
-        let newValue = clicksNumber + 1
-        setClicksNumber(newValue);
-        console.log("project with id: [" + projectBeingEdited.id + "] has been clicked [" + newValue + "] times");
-    }
     const handleEditClick = (projectBeingEdited: Project) => {
-        incrementClickNumber(projectBeingEdited)
         onEdit(projectBeingEdited)
     };
 
-
     return (
         <div className="card">
-            <img src={project.imageUrl} alt={project.name}/>
+            <Link to={'/projects/' + project.id}>
+                <img src={project.imageUrl} alt={project.name}/>
+            </Link>
+
             <section className="section dark">
                 <h5 className="strong">
                     <strong>{project.name}</strong>
@@ -45,7 +39,6 @@ function ProjectCard(props: ProjectCardProps) {
                     <span className="icon-edit "></span>
                     Edit
                 </button>
-                <p>{clicksNumber}</p>
 
             </section>
         </div>

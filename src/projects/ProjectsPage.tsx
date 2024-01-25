@@ -55,7 +55,7 @@ function ProjectsPage() {
 
     return (
         <>
-            <h1>Projectsss:</h1>
+            <h1>Projects:</h1>
 
             {error && (
                 <div className="row">
@@ -73,7 +73,7 @@ function ProjectsPage() {
             {loading && (
                 <div className="center-page">
                     <span className="spinner primary"></span>
-                    <p>dzwoni do api....</p>
+                    <p>calling to backend....</p>
                 </div>
             )}
 
